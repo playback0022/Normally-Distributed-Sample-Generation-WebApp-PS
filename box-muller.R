@@ -1,15 +1,4 @@
 boxMuller <- function (sampleSize, mean, variance, startRange, endRange, numberOfBreaks) {
-  # making sure provided parameters are valid
-  if (sampleSize <= 0 | variance <= 0 | numberOfBreaks <= 0) {
-    plot(1, type = "n", xlab = "", ylab = "", xlim = c(startRange, endRange), ylim = c(0,1))
-    # generating the sequence of values in the specified
-    # range based on which to generate and plot the PDF 
-    x = seq(startRange, endRange, 0.01)
-    # plotting PDF over the histogram
-    curve(dnorm(x, mean = mean, sd = sqrt(variance)), lwd = 2, col = "red", add = TRUE)
-    return()
-  }
-  
   generateNormallyDistributedPair <- function () {
     # generating the two independent uniformly distributed random variables
     uniformFirst <- runif(1)
