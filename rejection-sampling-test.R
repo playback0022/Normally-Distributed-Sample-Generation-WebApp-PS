@@ -1,4 +1,4 @@
-  numberOfIterations = 100000
+  numberOfIterations = 10000
   mean = 55
   variance = 1000
   startRange = -100
@@ -20,13 +20,13 @@
   rejected_samples_x <- numeric(numberOfIterations)
   rejected_samples_y <- numeric(numberOfIterations)
   
-  accepted_count <- 0
-  rejected_count <- 0
-  count = 0 
+  accepted_count <- 1
+  rejected_count <- 1
+  count = 1
   
   maximumOfPDF = 1 / sqrt(2 * pi * variance) 
   
-  while (count < numberOfIterations) {
+  while (count <= numberOfIterations) {
     #2 uniformly distributed RV are generated to match the interest area   
     x <- runif(1, min = startRange, max = endRange)
     y <- runif(1, min = 0, max = maximumOfPDF)
@@ -37,17 +37,19 @@
       accepted_samples_y[accepted_count+1] <- y          
       accepted_count <- accepted_count + 1
     }else{
-      rejected_samples_x[rejected_count+1] <- x
-      rejected_samples_y[rejected_count+1] <- y
+      rejected_samples_x[rejected_count + 1] = x
+      rejected_samples_y[rejected_count + 1] = y
       rejected_count <- rejected_count + 1
     }
-    count = count + 1
+    count <- count + 1
+    print(count)
   }
+  
   
   print(accepted_samples_x)
     # plotting the histogram of the generated sample
     par(bg = "#f2f2f2")
-    hist(accepted_samples_x, main = "Rejection Sampling", col = "#b5b5b5", border = "#b5b5b5", xlab = "Generated Sample", probability = TRUE, breaks = numberOfBreaks)
+    hist(accepted_samples_x[1:accepted_count], main = "Rejection Sampling", col = "#b5b5b5", border = "#b5b5b5", xlab = "Generated Sample", probability = TRUE, breaks = numberOfBreaks)
     # generating the sequence of values in the specified
     # range based on which to generate and plot the PDF 
     x = seq(startRange, endRange, 0.01)

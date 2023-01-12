@@ -167,7 +167,7 @@ server = function(input, output) {
     else {
       # plotting the histogram of the generated sample
       par(bg = "#f2f2f2")
-      hist(accepted_samples_x, main = "Rejection Sampling", col = "#b5b5b5", border = "#b5b5b5", xlab = "Generated Sample", probability = TRUE, breaks = numberOfBreaks)
+      hist(accepted_samples_x[1:accepted_count], main = "Rejection Sampling", col = "#b5b5b5", border = "#b5b5b5", xlab = "Generated Sample", probability = TRUE, breaks = numberOfBreaks)
       # generating the sequence of values in the specified
       # range based on which to generate and plot the PDF 
       x = seq(startRange, endRange, 0.01)
