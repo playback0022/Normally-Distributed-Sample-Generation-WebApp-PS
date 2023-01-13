@@ -1,0 +1,73 @@
+---
+output:
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(shiny)
+
+```
+
+<div style="text-align: center;">
+  <h1>Project Report</h1>
+  <br>
+</div>
+
+<div style="text-align: left;">
+  <h2>Task</h2>
+</div>
+Develop an application illustrating how to generate a normally distributed random variable using the accept-reject algorithm and the Box-Muller method.
+
+<div style="text-align: left;">
+  <h3>The Rejection Sampling Method</h3>
+</div>
+The rejection sampling method is a technique for generating samples from a target probability density function (pdf), by generating samples from an auxiliar pdf and accepting or rejecting them based on the ratio of the target pdf to the auxiliar pdf. This method is particularly useful for generating samples from distributions that have no closed-form solutions for generating random samples.
+<br>
+<div style="text-align: left;">
+  <h4>Steps</h4>
+</div>
+
+<ol>
+  <li>Choose an auxiliar pdf, g(x), that is easy to sample from(uniform distribution in our case), and that envelops the target pdf, f(x)(normal distribution for us)</li>
+  <li>Generate a sample, x, from the auxiliar pdf, g(x)</li>
+  <li>Generate a sample, y, from a uniform distribution between 0 and the maximum value of g(x)</li>
+  <li>Compare y to f(x)/g(x). If y is less than or equal to f(x)/g(x), accept x as a sample from the target pdf, otherwise reject x</li>
+  <li>Repeat steps 2-4 a desired number of times</li>
+</ol>
+
+<p align = "center" style="margin-bottom:1px">
+  <img src = "AcceptReject1.png" width = "80%" height = "600px" style = "margin-bottom: -80px" />
+  <img src = "AcceptReject2.png" width = "80%" height = "600px" style = "margin-top: -80px"/>
+</p>
+
+<div style="text-align: left; margin-top: -180px;">
+  <h3>The Box-Muller</h3>
+</div>
+The Box-Muller method is a technique for generating pairs of independent, standard, normally distributed (i.e., Gaussian) random numbers, given a pair of independent, uniformly distributed random numbers. This method is particularly useful for generating samples from normal distributions in simulations and other applications where random numbers are needed.
+
+<div style="text-align: left;">
+  <h4>Steps</h4>
+</div>
+
+<ol>
+  <li>Generate two independent samples, u1 and u2, from the uniform distribution U(0, 1)</li>
+  <li>Compute the standard normal random variables, z1 and z2, using the following equations:
+      <ul>
+        <li>z1 = sqrt(-2 * log(u1)) * cos(2 * pi * u2)</li>
+        <li>z2 = sqrt(-2 * log(u1)) * sin(2 * pi * u2)</li>
+      </ul>
+  </li>
+  <li>The pair (z1, z2) is a sample from the standard normal distribution</li>
+</ol>
+
+<p align = "center">
+  <img src = "BoxMuller.png" width = "80%" height = "80%" />
+</p>
+
+<div style="text-align: center; margin-top: -120px;">
+  <h4>This WebApp was developed as a project for the Probabilities and Statistics course of the University of Bucharest.
+Project Contributors: playback0022 (Toma), IRadu15 (Radu)</h4>
+</div>
+
+
